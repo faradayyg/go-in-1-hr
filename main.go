@@ -15,6 +15,8 @@ func main() {
 
 	// Arrays
 	var arr [3]int32 = [...]int32{0, 1, 2}
+
+	// Stored in contiguous memory locations
 	fmt.Println(&arr[0])
 	fmt.Println(&arr[1])
 	fmt.Println(&arr[2])
@@ -32,6 +34,17 @@ func main() {
 	intSlice = append(intSlice, 10)
 	fmt.Printf("\nNew length %v, new cap(should be unchanged) %v", len(intSlice), cap(intSlice))
 
+	// Slices using the Make function
+	// make -> type, length and capacity of slice
+	var intSlice2 []int32 = make([]int32, 4, 4)
+
+	fmt.Printf("\nSize of slice %v, capacity %v", len(intSlice2), cap(intSlice2))
+
+	//Usual operations should work as well
+	intSlice2 = append(intSlice2, 5)
+	intSlice2 = append(intSlice2, make([]int32, 2)...)
+
+	fmt.Printf("\nNew size of slice %v, capacity %v", len(intSlice2), cap(intSlice2))
 }
 
 func foo(num int) (string, error) {
